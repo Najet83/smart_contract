@@ -1,8 +1,9 @@
-//SPDX-Licence-Identifier: MIT
-pragma solidity 0.8.20;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
 
 // import Openzeppelin Ownable contract
 import "@openzeppelin/contracts/access/Ownable.sol";
+
 
 // @title the contract name is FinalprojectContract
 // @author the author is Najet Ben Hamouda

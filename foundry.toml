@@ -2,7 +2,7 @@
 src = "src"
 out = "out"
 libs = ["lib"]
-remappings = [
-    '@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/',
-]
+remappings = ['@openzeppelin/=lib/openzeppelin-contracts/',]
+etherscan-api-key = "41VNHWU34VWFM5QGAWV5ECV3W8ERGUPKI9"
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
