@@ -11,7 +11,7 @@ contract FinalProjectTest is Test {
 
     function setUp() public {
         vm.prank(owner);
-        finalProject = new FinalProject(); // Initialize the contract with an initial supply of 1000 ether
+        finalProject = new FinalProject(); // Deploy the FinalProject contract as the owner
         vm.deal(owner, 10 ether); // Give the owner 10 ether for testing
     }
 
@@ -33,12 +33,16 @@ contract FinalProjectTest is Test {
         vm.stopPrank(); // Stop impersonating the owner
     }
 
+    //test case for the withdraw function: a non-owner tries to withdraw ether from the contract
+    //the contract should revert with an error message: "Ownable: caller is not the owner"
     function testRevertIfNotOwnerCallsWithdraw() public {
         vm.prank(nonOwner);
-        vm.expectRevert();
+        vm.expectRevert("The caller is not the owner");
         finalProject.withdraw(1 ether);
     }
 
+    //test case for the withdraw function: the owner deposits 1 ether into the contract and then he tries to withdraw more than his balance
+    //the contract should revert with an error message: "Insufficient balance"
     function testRevertWithdrawMoreThanBalance() public {
         vm.startPrank(owner); // Start impersonating the owner
         finalProject.deposit{value: 1 ether}(); // owner deposits 1 ether

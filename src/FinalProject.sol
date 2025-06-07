@@ -5,7 +5,7 @@ pragma solidity 0.8.24;
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-// @title the contract name is FinalprojectContract
+// @title the contract name is Finalproject
 // @author the author is Najet Ben Hamouda
 // @notice this contract is a simple wallet contract that allows users to deposit and withdraw ether
 // @dev this contract uses the OpenZeppelin Ownable contract to manage ownership
@@ -24,12 +24,16 @@ contract FinalProject is Ownable {
     event FundsDeposited(address indexed sender, uint amount);
     event FundsWithdrawn(address indexed receiver, uint amount);
 
+    // @notice this function allows users to deposit ether into the contract
+    // @dev this function updates the balance of the sender and emits an event
     function deposit() external payable{
         require(msg.value > 0, "You must send some ether");
         balanceOf[msg.sender] += msg.value;
         emit FundsDeposited(msg.sender,msg.value);
     }
 
+    // @notice this function allows users to withdraw ether from the contract
+    // @dev this function checks if the sender has enough balance, updates the balance, and sends ether to the sender
     // make only the owner is the one who can call this function
     function withdraw(uint256 amount) external onlyOwner{
         require(amount > 0, "Amount must be greater than 0");
@@ -40,7 +44,8 @@ contract FinalProject is Ownable {
         emit FundsWithdrawn(msg.sender,amount);
        
     }
-
+    // @notice this function allows users to check their balance
+    // @return the balance of the sender
     function getBalance() external view returns (uint256) {
         return balanceOf[msg.sender];
     }
